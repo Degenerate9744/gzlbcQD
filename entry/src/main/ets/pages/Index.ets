@@ -1,5 +1,5 @@
 import request from '@ohos.request';
-
+import router from '@ohos.router';
 @Entry
 @Component
 struct Index {
@@ -11,7 +11,29 @@ struct Index {
         Button('上传').width('100%').onClick(() => {
           this.upload()
         })
-      }
+      }.width('100%').margin({ bottom: '20vp' }).borderWidth({ bottom: 1 })
+      Row(){
+        Button('用户角色页').width('100%').onClick(() => {
+          router.pushUrl({
+            url: "pages/UserRole"
+          }).then(()=>{
+            console.log('successful')
+          }).catch(()=>{
+            console.log('err')
+          })
+        })
+      }.width('100%').margin({ bottom: '20vp' }).borderWidth({ bottom: 1 })
+      Row(){
+        Button('角色权限页').width('100%').onClick(() => {
+          router.pushUrl({
+            url: "pages/RolePermission"
+          }).then(()=>{
+            console.log('successful')
+          }).catch(()=>{
+            console.log('err')
+          })
+        })
+      }.width('100%').margin({ bottom: '20vp' }).borderWidth({ bottom: 1 })
     }
   }
   upload(){
