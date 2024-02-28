@@ -16,7 +16,7 @@ export class UserApiBack{
     return p;
   }
   // flag=0时是改变用户角色，flag=1时是改变角色权限
-  changePermission(id:string,flag:number,option:string):Promise<Object>{
+  changePermission(id:number,flag:number,option:string):Promise<Object>{
     // console.info("=============="+id+"==="+flag+"==="+option)
     let requestData = {
       "id": id,

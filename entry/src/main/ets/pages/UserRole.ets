@@ -22,7 +22,7 @@ struct Index {
                 .onChange((itemName: CheckboxGroupResult) => {
                   let option = JSON.stringify(itemName);
                   console.info("checkbox group content" + option)
-                  userApiBack.changePermission('2',0,option)
+                  userApiBack.changePermission(2,0,option)//有问题
                 })
               Text('所有角色').fontSize(20).lineHeight(20).fontColor('#182431').fontWeight(500)
             }
