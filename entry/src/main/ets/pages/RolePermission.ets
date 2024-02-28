@@ -1,11 +1,13 @@
 import request from '@ohos.request';
 import router from '@ohos.router';
+import userApiBack from '../api/UserApi_back';
 
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World'
-
+  @State roleOption:string = '';
+  @State permissionOption:string = '';
   build() {
     Column() {
       Row(){
@@ -19,47 +21,49 @@ struct Index {
               CheckboxGroup({ group: 'checkboxGroup' })
                 .selectedColor('#007DFF')
                 .onChange((itemName: CheckboxGroupResult) => {
-                  console.info("checkbox group content" + JSON.stringify(itemName))
+                  console.info("role group content" + JSON.stringify(itemName))
+                  this.roleOption = JSON.stringify(itemName);
+                  userApiBack.changePermission1(this.roleOption,this.permissionOption)
                 })
               Text('所有角色').fontSize(20).lineHeight(20).fontColor('#182431').fontWeight(500)
             }
 
             // 选项1
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
+              Checkbox({ name: 'role1', group: 'checkboxGroup' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox1 change is' + value)
+                  console.info('role1 change is' + value)
                 })
               Text('角色1').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
 
             // 选项2
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
+              Checkbox({ name: 'role2', group: 'checkboxGroup' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox2 change is' + value)
+                  console.info('role2 change is' + value)
                 })
               Text('角色2').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
 
             // 选项3
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
+              Checkbox({ name: 'role3', group: 'checkboxGroup' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox3 change is' + value)
+                  console.info('role3 change is' + value)
                 })
               Text('角色3').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
 
             // 选项4
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
+              Checkbox({ name: 'role4', group: 'checkboxGroup' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox3 change is' + value)
+                  console.info('role4 change is' + value)
                 })
               Text('角色4').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
@@ -72,90 +76,92 @@ struct Index {
           Column() {
             // 全选按钮
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              CheckboxGroup({ group: 'checkboxGroup' })
+              CheckboxGroup({ group: 'checkboxGroup1' })
                 .selectedColor('#007DFF')
                 .onChange((itemName: CheckboxGroupResult) => {
-                  console.info("checkbox group content" + JSON.stringify(itemName))
+                  console.info("permission group content" + JSON.stringify(itemName))
+                  this.permissionOption = JSON.stringify(itemName);
+                  userApiBack.changePermission1(this.roleOption,this.permissionOption)
                 })
               Text('所有权限').fontSize(20).lineHeight(20).fontColor('#182431').fontWeight(500)
             }
 
             // 选项1
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
+              Checkbox({ name: 'permission1', group: 'checkboxGroup1' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox1 change is' + value)
+                  console.info('permission1 change is' + value)
                 })
               Text('权限1').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
 
             // 选项2
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
+              Checkbox({ name: 'permission2', group: 'checkboxGroup1' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox2 change is' + value)
+                  console.info('permission2 change is' + value)
                 })
               Text('权限2').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
 
             // 选项3
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
+              Checkbox({ name: 'permission3', group: 'checkboxGroup1' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox3 change is' + value)
+                  console.info('permission3 change is' + value)
                 })
               Text('权限3').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
 
             // 选项4
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
+              Checkbox({ name: 'permission4', group: 'checkboxGroup1' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox3 change is' + value)
+                  console.info('permission4 change is' + value)
                 })
               Text('权限4').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
 
             // 选项5
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
+              Checkbox({ name: 'permission5', group: 'checkboxGroup1' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox3 change is' + value)
+                  console.info('permission5 change is' + value)
                 })
               Text('权限5').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
 
             // 选项6
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
+              Checkbox({ name: 'permission6', group: 'checkboxGroup1' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox3 change is' + value)
+                  console.info('permission6 change is' + value)
                 })
               Text('权限6').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
 
             // 选项7
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
+              Checkbox({ name: 'permission7', group: 'checkboxGroup1' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox3 change is' + value)
+                  console.info('permission7 change is' + value)
                 })
               Text('权限7').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
 
             // 选项8
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-              Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
+              Checkbox({ name: 'permission8', group: 'checkboxGroup1' })
                 .selectedColor('#007DFF')
                 .onChange((value: boolean) => {
-                  console.info('Checkbox3 change is' + value)
+                  console.info('permission8 change is' + value)
                 })
               Text('权限8').fontSize(18).lineHeight(20).fontColor('#182431').fontWeight(500)
             }.margin({ left: 36 })
