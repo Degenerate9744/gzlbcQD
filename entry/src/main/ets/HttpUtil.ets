@@ -1,9 +1,13 @@
 import http from '@ohos.net.http';
 import promptAction from '@ohos.promptAction';
 import apiResult from './model/ApiResult';
+import singleton from './model/Singleton'
 
 export class HttpUtil {
   request(url: string, requestMethod: http.RequestMethod, requestData?: Object): Promise<Object> {
+    // var token = 'Mi01NjE0ODAxOTA5NTJiYjllNzRlODc0MzUwOTM3OWQxYw==';
+    console.info('************'+singleton.get('token'))
+    var token = singleton.get('token')
     let p = new Promise<Object>((resolve, reject) => {
       // 引入包名
       // 每一个httpRequest对应一个HTTP请求任务，不可复用
@@ -13,7 +17,8 @@ export class HttpUtil {
         connectTimeout: 60000,
         readTimeout: 60000,
         header: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         // 当使用POST请求时此字段用于传递内容
         extraData: requestData

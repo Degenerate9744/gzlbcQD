@@ -5,6 +5,7 @@ import promptAction from '@ohos.promptAction';
 import HttpUtil from '../HttpUtil';
 import userApi from '../api/UserApi';
 import Animator from '@ohos.animator';
+import singleton from '../model/Singleton'
 
 
 @Entry
@@ -64,7 +65,14 @@ struct Index {
               router.pushUrl({
                 url: "pages/Index"
               }).then(()=>{
-                console.log('successful')
+                // console.info('___________________________')
+                // console.info('======='+JSON.stringify(data))
+                let res = JSON.parse(JSON.stringify(data))
+                console.info('============'+res.token)
+                singleton.setOrCreate('token',res.token)
+                // console.info('************'+JSON.stringify(singleton))
+                // console.info('************'+singleton.get('token'))
+                console.info('++++++successful')
               }).catch(()=>{
                 console.log('err')
               })
